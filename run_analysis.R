@@ -44,6 +44,7 @@ y_merged <- merge(y_combined, activity_labels, sort=FALSE)
 tidy_data <- cbind(subject, y_merged, x_mean_std_only)
 tidy_data <- tidy_data[order(tidy_data$Subject.Index,tidy_data$Activity.Index),]
 
+write.csv(tidy_data, "tidy_mean_std.txt")
 
 full_data <- cbind(subject, y_combined, x_combined)
 full_aggregate <- aggregate(full_data, 
@@ -55,3 +56,5 @@ full_tidy_data <- cbind(full_merged$Subject.Index,
                         full_merged$Activity.Index,
                         full_merged$Activity.Label,
                         full_merged[,5:565])
+
+write.csv(full_tidy_data, "tidy_aggregates.txt")
